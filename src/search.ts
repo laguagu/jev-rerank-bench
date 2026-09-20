@@ -111,8 +111,9 @@ export async function hybridSearch(
     -- Measured on this corpus (37 440 rows, EXPLAIN ANALYZE, warm): 394 ms for
     -- the window-inside-LIMIT form against 314 ms for this one. Real but
     -- modest, and *not* the difference between using the HNSW index and not —
-    -- see `scripts/check-index-use.ts`, which shows the planner declining the
-    -- index for both shapes at this size, correctly.
+    -- see scripts/check-index-use.ts, which shows the planner declining the
+    -- index for both shapes at this size, correctly. A backtick in this comment
+    -- would end the template literal the query lives in; keep them out.
     lexical AS (
       SELECT id, row_number() OVER () AS rank FROM (
         SELECT c.id
