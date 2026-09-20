@@ -180,6 +180,14 @@ Any Postgres with pgvector works; `docker-compose.yml` brings up a local one. Th
 runs in `results/` used Neon in `eu-central-1`, so their retrieval latencies
 include a round trip from Finland to Frankfurt and are not a measure of pgvector.
 
+`bun run check-index` prints whether the vector query actually uses the HNSW
+index. On this corpus it does not, and the planner is right to decline it — a
+sequential scan of 37 440 rows takes 356 ms against 1417 ms for a forced index
+scan, because the 283 MB graph does not fit comfortably on a 1 CU compute. **The
+first stage in every result here is therefore exact nearest-neighbour, not
+approximate**, which makes the retrieval quality an upper bound rather than an
+ANN approximation. Check this before quoting any latency number from `results/`.
+
 **Cost.** Every number here was produced for about **\$16** in total — roughly
 \$1.40 of embeddings and the rest reranking, across two corpora, twelve
 strategies, two shortlist depths and several ablations.

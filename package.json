@@ -15,7 +15,8 @@
     "prepare-mupler": "bun run src/cli/prepare-mupler.ts",
     "fuse": "bun run src/cli/fuse.ts",
     "dump-question": "bun run src/cli/dump-question.ts",
-    "laya": ".venv-laya/Scripts/python.exe scripts/laya_score.py"
+    "laya": ".venv-laya/Scripts/python.exe scripts/laya_score.py",
+    "check-index": "bun run scripts/check-index-use.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "0.6.0",

@@ -103,11 +103,16 @@ export async function hybridSearch(
     WITH q AS (
       SELECT websearch_to_tsquery('finnish', ${orQuery(query)}) AS tsq
     ),
-    -- The window function has to run outside the LIMIT. Written as
-    -- row_number() OVER (ORDER BY embedding <=> v) it is computed over every
-    -- row before the limit applies, which forces a full sort of the table and
-    -- the HNSW index is never used. Ranking the already-limited subquery with
-    -- OVER () keeps the index scan and preserves its order.
+    -- The window function ranks the already-limited subquery rather than the
+    -- whole table. Written the other way round — row_number() OVER (ORDER BY
+    -- embedding <=> v) beside an ORDER BY ... LIMIT — the window has to see
+    -- every qualifying row before the limit applies.
+    --
+    -- Measured on this corpus (37 440 rows, EXPLAIN ANALYZE, warm): 394 ms for
+    -- the window-inside-LIMIT form against 314 ms for this one. Real but
+    -- modest, and *not* the difference between using the HNSW index and not —
+    -- see `scripts/check-index-use.ts`, which shows the planner declining the
+    -- index for both shapes at this size, correctly.
     lexical AS (
       SELECT id, row_number() OVER () AS rank FROM (
         SELECT c.id

@@ -30,6 +30,15 @@ matters more than anything that makes the code prettier.
   of combinations for nothing. It splits queries into dev and test by index
   parity, selects on dev and reports test — with 84 queries a free search over
   dozens of combinations will always find a spurious winner otherwise.
+- **The HNSW index is not used at this corpus size, and that is correct.**
+  `bun run check-index` shows the planner choosing a sequential scan for the
+  top-60 vector query: 356 ms against 1417 ms when the index is forced with
+  `enable_seqscan=off`. Reading a 283 MB HNSW graph on a 1 CU compute costs more
+  than scanning 37 440 rows. Two consequences: the first stage in every result
+  here is **exact** nearest-neighbour rather than approximate, so the quality
+  numbers are an upper bound rather than an ANN approximation; and
+  `CONFIG.hnswEfSearch` had no effect on any of them. Re-check with
+  `check-index` before quoting a latency number or tuning `ef_search`.
 - **DDL is always schema-qualified; DML relies on `search_path`.** `db/*.sql`
   names every table as `{{schema}}.x`. It did not always: with
   `SET search_path = mupler, public`, an unqualified
