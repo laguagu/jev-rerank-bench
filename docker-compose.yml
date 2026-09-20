@@ -1,0 +1,22 @@
+# Local alternative to a hosted Postgres. Point DATABASE_URL at
+# postgres://jev:jev@127.0.0.1:5434/jevlab after `docker compose up -d`.
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    # Loopback only. An open 5432 with weak auth on this workspace has been
+    # taken over before (COPY ... FROM PROGRAM). Do not widen this binding.
+    ports:
+      - "127.0.0.1:5434:5432"
+    environment:
+      POSTGRES_USER: jev
+      POSTGRES_PASSWORD: jev
+      POSTGRES_DB: jevlab
+    volumes:
+      - jevdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jev -d jevlab"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+volumes:
+  jevdata:

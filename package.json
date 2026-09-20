@@ -1,0 +1,30 @@
+{
+  "name": "jev-rerank-bench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Does a typed-judgment model rerank better than a cross-encoder? Two Finnish legal corpora, identical shortlists, identical questions.",
+  "scripts": {
+    "prepare-corpus": "bun run src/cli/prepare-corpus.ts",
+    "ingest": "bun run src/cli/ingest.ts",
+    "bench": "bun run src/cli/bench.ts",
+    "report": "bun run src/cli/report.ts",
+    "probe": "bun run src/cli/probe.ts",
+    "validate": "bun run src/cli/validate.ts",
+    "examples": "bun run src/cli/examples.ts",
+    "prepare-mupler": "bun run src/cli/prepare-mupler.ts",
+    "fuse": "bun run src/cli/fuse.ts",
+    "dump-question": "bun run src/cli/dump-question.ts",
+    "laya": ".venv-laya/Scripts/python.exe scripts/laya_score.py"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "hyparquet": "^1.31.1",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.7.0"
+  },
+  "license": "MIT"
+}

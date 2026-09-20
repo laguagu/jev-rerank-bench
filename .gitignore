@@ -1,0 +1,25 @@
+node_modules/
+.env
+.env.local
+.venv-laya/
+
+# Derived per-dataset artifacts. The embeddings cost money to rebuild, so they
+# are kept locally and never committed; everything else here is reproducible.
+data/*/corpus.json
+data/*/dropped-queries.json
+data/*/embeddings.*
+data/*/shortlists-*.json
+data/*/query-vectors.json
+data/*/laya-scores-*.json
+data/*/*.parquet
+
+# Run outputs: the committed summaries stay, individual runs do not.
+results/**/run-*.json
+results/**/*.log
+
+*.log
+
+# Belt and braces: nothing under data/ is ever committed. The corpus text and
+# its embeddings live only on the machine that built them.
+data/**
+!data/.gitkeep
