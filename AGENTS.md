@@ -11,7 +11,7 @@ matters more than anything that makes the code prettier.
   reranker is allowed to change shortlist membership, the metrics stop being
   comparable and the whole run is worthless.
 - **The shortlist cache always covers every query, never `--limit`.** A smoke
-  run that wrote three shortlists once made the next full run read three.
+  run that cached a partial shortlist would make the next full run read only that.
 - **Every model is asked the identical question, and the question lives in one
   file.** `rerank/questions.ts` holds one `RelevanceSpec` per corpus; `jev.ts`
   and `llm.ts` import it, and the Python Laya baseline reads it from
@@ -22,39 +22,37 @@ matters more than anything that makes the code prettier.
   hundreds of collective agreements repeat each other and only provenance
   separates a right answer from a wrong one. MuPLeR passages carry a bare
   numeric id, so that condition can never be verified — and the same question
-  scored *below no reranking at all* there, 66.5% against 73.0%. The
-  mis-specified run is kept at `results/mupler/latest-mis-specified-question.json`
+  scored *below no reranking at all* there. The mis-specified run is kept at
+  `results/mupler/latest-mis-specified-question.json`
   because the contrast is the most useful result in the repository.
 - **Fusion is searched offline, never by re-running.** Each strategy stores
   every candidate's score in `scoresByQuery`, so `bun run fuse` can try hundreds
   of combinations for nothing. It splits queries into dev and test by index
-  parity, selects on dev and reports test — with 84 queries a free search over
+  parity, selects on dev and reports test — with this few queries a free search over
   dozens of combinations will always find a spurious winner otherwise.
 - **The HNSW index is not used at this corpus size, and that is correct.**
   `bun run check-index` shows the planner choosing a sequential scan for the
-  top-60 vector query: 356 ms against 1417 ms when the index is forced with
-  `enable_seqscan=off`. Reading a 283 MB HNSW graph on a 1 CU compute costs more
-  than scanning 37 440 rows. Two consequences: the first stage in every result
+  candidate vector query, and forcing the index with `enable_seqscan=off` is
+  slower: reading the HNSW graph costs more than scanning the rows. Two
+  consequences: the first stage in every result
   here is **exact** nearest-neighbour rather than approximate, so the quality
   numbers are an upper bound rather than an ANN approximation; and
   `CONFIG.hnswEfSearch` had no effect on any of them. Re-check with
   `check-index` before quoting a latency number or tuning `ef_search`.
 - **DDL is always schema-qualified; DML relies on `search_path`.** `db/*.sql`
-  names every table as `{{schema}}.x`. It did not always: with
-  `SET search_path = mupler, public`, an unqualified
-  `DROP TABLE IF EXISTS chunks` resolves to `public.chunks` when `mupler.chunks`
-  does not exist yet — so the first MuPLeR ingest deleted the private corpus, and
-  nothing noticed for half an hour because every run in between read cached
-  shortlists instead of the database. Re-ingesting cost 62 seconds and no money
-  only because the embedding cache is content-addressed.
+  names every table as `{{schema}}.x`. With `search_path = mupler, public`, an
+  unqualified `DROP TABLE IF EXISTS chunks` resolves to `public.chunks` when
+  `mupler.chunks` does not exist yet and deletes the private corpus. Cached
+  shortlists hide that loss, because runs read them instead of the database.
 - **Report the shortlist ceiling with every result.** A reranker cannot retrieve
   what the first stage missed. A "62% Recall@10" means nothing without the "the
   shortlist only contained the answer 71% of the time" next to it.
 - **Do not fold `ä`/`ö` with unaccent.** They are distinct letters in Finnish,
   not accents, and folding them merges words this corpus distinguishes. The
   schema comment says so; leave it.
-- **`ts_rank_cd` is not BM25.** Neon has no `pg_search`. Say "Postgres FTS" in
-  any write-up, never "BM25" — the TypeSafe cookbook this is compared against
+- **`ts_rank_cd` is not BM25.** This project ranks lexical matches with Postgres
+  FTS. Say "Postgres FTS" in any write-up, never "BM25" — the TypeSafe cookbook
+  this is compared against
   used real BM25 and the two are not interchangeable.
 - **Retrieval latency in `results/` includes a round trip to Frankfurt.** It is
   not a measure of pgvector speed. Rerank latency is the number that is actually
@@ -62,15 +60,15 @@ matters more than anything that makes the code prettier.
 - **Query ids repeat in the source CSV.** The same `node` supplies two different
   questions; `dataset.ts` disambiguates with a `.2` suffix. Do not key anything
   on `node`.
-- **`data/embeddings.*` is a paid artifact.** It is content-addressed, so a
-  chunk whose text is unchanged is never re-embedded. Deleting it costs ~$0.90
-  and 20 minutes.
+- **`data/<ds>/embeddings.*` is a paid artifact.** It is content-addressed, so a
+  chunk whose text is unchanged is never re-embedded. Deleting it means paying
+  for, and waiting on, a full re-embed.
 - **The distractor sample is deterministic but not stable.** `prepare-corpus`
   shuffles the whole document list with a seeded PRNG and takes a prefix, so
   adding or removing *any* source file — even one that was never selected —
-  reshuffles which 122 distractors are chosen, and most of the corpus needs
-  re-embedding. Removing two stray `LINKS.md` files cost 13 538 chunks. If the
-  source tree is going to change often, order the pool by a hash of the file
+  reshuffles which distractors are chosen, and most of the corpus needs
+  re-embedding. If the source tree is going to change often, order the pool by a
+  hash of the file
   name instead; that keeps every other selection where it was.
 
 ## Two datasets
@@ -112,8 +110,8 @@ it matches a hosted model on reranking, the capability is not something that has
 to be bought.
 
 - Use the `multilingual` checkpoint. Both corpora are Finnish.
-- On CPU it costs about 390 ms per decision, so a 30-candidate shortlist is
-  ~12 s per query. The project's README measures 39.5 ms on a T4 — this machine
-  has no usable CUDA device, so the latency here is not the model's.
+- Its latency in `results/` was measured on CPU, so it is not the model's GPU
+  latency. `.venv-laya` is machine-local and gitignored; create it on each machine
+  before `bun run laya`.
 - It writes `<dataset dir>/laya-scores-<kind>.json`, which the benchmark reads
   as a precomputed reranker. Nothing in that path calls a paid API.
