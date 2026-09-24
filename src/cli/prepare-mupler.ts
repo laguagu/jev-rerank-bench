@@ -3,9 +3,9 @@
  *
  * MuPLeR (Multilingual Parallel Legal Retrieval, EUPL-1.2) is the public
  * counterpart to the private corpus: EU legal text, Finnish, 10 000 passages and
- * 200 queries with one gold passage each, in BEIR format. The private corpus corpus is
- * employer data and cannot ship with this repository; this one can, so the
- * published numbers are reproducible by anyone.
+ * 200 queries with one gold passage each, in BEIR format. The private corpus
+ * may not be redistributed; this one can, so the published numbers are
+ * reproducible by anyone.
  *
  * Its documents are already passage-sized, so one document is one chunk and
  * there is no chunking to argue about. Section-level ground truth does not

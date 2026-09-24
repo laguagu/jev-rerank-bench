@@ -410,7 +410,15 @@ writeFileSync(
       model: CONFIG.jevModel,
       primaryLevel: PRIMARY,
       sectionEvaluable: sectionN,
-      queries: queries.map((q, i) => ({ id: q.id, question: q.question, category: q.category, files: q.files, sections: q.sections, sectionEvaluable: sectionMask[i], primaryEvaluable: primaryMask[i] })),
+      // A corpus that may not be redistributed keeps its questions and document
+      // names out of the results file; the metrics need neither.
+      queries: queries.map((q, i) => ({
+        id: q.id,
+        category: q.category,
+        ...(DATASET.publishable ? { question: q.question, files: q.files, sections: q.sections } : {}),
+        sectionEvaluable: sectionMask[i],
+        primaryEvaluable: primaryMask[i],
+      })),
       strategies: merged,
     },
     null,

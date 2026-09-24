@@ -9,13 +9,18 @@
 import { readFileSync } from "node:fs";
 import { CONFIG } from "../config";
 import { DATASET } from "../dataset-config";
+import type { EvalQuery } from "../dataset";
 import type { Candidate } from "../search";
 
 interface PerQuery { id: string; docRank: number | null; sectionRank: number | null; topScore: number | null }
 interface Strategy { name: string; stage: string; reranker: string; perQuery: PerQuery[] }
-interface Run { primaryLevel: "doc" | "section"; queries: { id: string; question: string; files: string[]; sections: string[]; sectionEvaluable: boolean; primaryEvaluable: boolean }[]; strategies: Strategy[] }
+interface Run { primaryLevel: "doc" | "section"; queries: { id: string; primaryEvaluable: boolean }[]; strategies: Strategy[] }
 
 const run = JSON.parse(readFileSync(`results/${DATASET.name}/latest.json`, "utf8")) as Run;
+// Questions and gold answers come from the local corpus, not the results file,
+// which omits them for a corpus that may not be redistributed. Ids repeat, so
+// queries are matched by position, as bench.ts wrote them.
+const gold = (JSON.parse(readFileSync(`${DATASET.dir}/corpus.json`, "utf8")) as { queries: EvalQuery[] }).queries;
 const shortlists = JSON.parse(readFileSync(`${DATASET.dir}/shortlists-k${CONFIG.candidateK}.json`, "utf8")) as Record<string, { candidates: Candidate[] }[]>;
 
 const target = process.argv[2] ?? "hybrid+jev-noul";
@@ -47,8 +52,9 @@ const show = (title: string, list: typeof rows, limit = 6) => {
   console.log(`\n${"=".repeat(78)}\n${title}  (${list.length})\n${"=".repeat(78)}`);
   for (const r of list.slice(0, limit)) {
     const before = shortlists[strategy.stage]?.[r.i]?.candidates[0];
-    console.log(`\n[${r.q.id}] ${r.q.question}`);
-    console.log(`  gold        ${r.q.files.join(", ")}  §  ${r.q.sections.join(" | ")}`);
+    const g = gold[r.i]!;
+    console.log(`\n[${r.q.id}] ${g.question}`);
+    console.log(`  gold        ${g.files.join(", ")}  §  ${g.sections.join(" | ")}`);
     console.log(`  rank        ${r.before === BOTTOM ? "not in top 30" : r.before} -> ${r.after === BOTTOM ? "not in top 30" : r.after}${r.topScore !== null ? `  (score ${r.topScore.toFixed(3)})` : ""}`);
     if (before) {
       console.log(`  first stage put first:`);
