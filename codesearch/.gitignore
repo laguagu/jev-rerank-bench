@@ -1,0 +1,8 @@
+# Local only: the fetched targets, the released binary, the paid index and its
+# query vectors. Everything else under results/ is small and is the evidence.
+bin/
+targets/
+index/
+results/query-vectors.json
+.venv/
+__pycache__/

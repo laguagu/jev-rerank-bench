@@ -1,0 +1,22 @@
+{
+  "asyncio_selector_event_loop": "Miten asyncion selector-pohjainen tapahtumasilmukka odottaa I/O-valmiutta ja kutsuu takaisinkutsut?",
+  "bytecode_eval_main_loop": "Mikä on se tavukoodin pääsilmukka, joka suorittaa Pythonin tavukoodikäskyt?",
+  "cyclic_garbage_collector": "Miten CPythonin syklinen roskienkerääjä löytää ja kerää viittaussyklit?",
+  "dict_probing_resizing": "Miten CPythonin sanakirjatoteutus etsii vapaan paikan ja kasvattaa hajautustaulua, kun se täyttyy?",
+  "exception_unwinding_traceback": "Miten CPython purkaa pinoa ja rakentaa traceback-jäljen, kun poikkeus etenee tavukoodin suorituksen läpi?",
+  "gil_acquire_release": "Miten CPythonin globaali tulkkilukko otetaan, vapautetaan ja vaihdetaan säikeiden välillä?",
+  "import_system_module_loading": "Miten CPythonin tuontijärjestelmä löytää ja lataa moduulin tiedostojärjestelmästä?",
+  "list_resizing_overallocation": "Miten CPythonin lista kasvattaa taustataulukkoaan ylivarauksella, kun siihen lisätään alkioita?",
+  "string_interning": "Miten CPython internoi merkkijonot niin, että samat merkkijonoliteraalit voivat jakaa saman olion?",
+  "tokenizer_lexer": "Miten CPythonin tokenisoija muuttaa Python-lähdetekstin tokenien virraksi?",
+  "autovacuum_trigger_decision": "Mikä logiikka päättää, tarvitseeko taulu autovacuumin tai automaattisen analyysin muuttuneiden rivien määrän perusteella?",
+  "buffer_clock_sweep_eviction": "Millä algoritmilla valitaan, mikä jaettu puskuri poistetaan, kun uusi sivu pitää lukea puskurivarantoon?",
+  "checkpoint_creation": "Miten tarkistuspiste luodaan, likaiset puskurit kirjoitetaan levylle ja tarkistuspisteen WAL-tietue tallennetaan?",
+  "deadlock_detection": "Miten Postgres havaitsee lukkiutuman, kun transaktiot odottavat toistensa lukkoja?",
+  "guc_config_file_parsing": "Miten palvelin jäsentää postgresql.conf-tiedoston ja ottaa asetusparametrien arvot käyttöön käynnistyksessä tai uudelleenlatauksessa?",
+  "hash_join_execution": "Miten hajautusliitos suoritetaan: hajautustaulu rakennetaan toisesta puolesta ja sitä haetaan toisella?",
+  "mvcc_tuple_visibility": "Miten Postgres päättää MVCC:ssä, näkyykö keon monikko annetulle tilannevedokselle?",
+  "planner_join_order_search": "Miten kyselysuunnittelija käy läpi eri liitosjärjestyksiä ja rakentaa liitosrelaatiot suunnittelun aikana?",
+  "replication_slot_wal_retention": "Miten replikointipaikat määräävät, mitkä WAL-segmentit on säilytettävä, ja estävät niiden poistamisen?",
+  "wal_insert_lsn_assignment": "Miten Postgres antaa WAL-tietueelle LSN:n ja varaa sille tilan WAL-puskureista, kun uusi tietue lisätään?"
+}
