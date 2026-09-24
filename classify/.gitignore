@@ -1,0 +1,6 @@
+# Downloaded datasets, paid embeddings and nearest-neighbour caches stay local;
+# the induced label definitions are kept because the *-desc arms depend on them.
+.venv/
+__pycache__/
+data/*
+!data/descriptions-*.json
