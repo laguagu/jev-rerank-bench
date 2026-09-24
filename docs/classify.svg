@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 454" width="760" height="454" role="img" aria-label="Intent classification accuracy, 600 messages per dataset"><style>
+.surface { fill: #fcfcfb; } .title { fill: #0b0b0b; } .ink { fill: #52514e; } .grid { stroke: #e4e3df; }
+.s1 { fill: #2a78d6; } .s2 { fill: #eb6834; } .s3 { fill: #1baf7a; }
+@media (prefers-color-scheme: dark) {
+  .surface { fill: #1a1a19; } .title { fill: #ffffff; } .ink { fill: #c3c2b7; } .grid { stroke: #383835; }
+  .s1 { fill: #3987e5; } .s2 { fill: #d95926; } .s3 { fill: #199e70; }
+}
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+</style>
+<rect class="surface" width="760" height="454" rx="8"/>
+<text class="title" x="20" y="30" font-size="15" font-weight="600">Intent classification accuracy, 600 messages per dataset</text>
+<rect class="s1" x="20" y="44" width="10" height="10" rx="2"/>
+<text class="ink" x="36" y="53" font-size="12">BANKING77 (77 labels)</text>
+<rect class="s2" x="197.20000000000002" y="44" width="10" height="10" rx="2"/>
+<text class="ink" x="213.20000000000002" y="53" font-size="12">CLINC150 + out-of-scope</text>
+<rect class="s3" x="388.8" y="44" width="10" height="10" rx="2"/>
+<text class="ink" x="404.8" y="53" font-size="12">MASSIVE Finnish (60)</text>
+<line class="grid" x1="250.0" x2="250.0" y1="68" y2="418" stroke-width="1"/>
+<text class="ink" x="250.0" y="434" font-size="11" text-anchor="middle">0%</text>
+<line class="grid" x1="363.5" x2="363.5" y1="68" y2="418" stroke-width="1"/>
+<text class="ink" x="363.5" y="434" font-size="11" text-anchor="middle">25%</text>
+<line class="grid" x1="477.0" x2="477.0" y1="68" y2="418" stroke-width="1"/>
+<text class="ink" x="477.0" y="434" font-size="11" text-anchor="middle">50%</text>
+<line class="grid" x1="590.5" x2="590.5" y1="68" y2="418" stroke-width="1"/>
+<text class="ink" x="590.5" y="434" font-size="11" text-anchor="middle">75%</text>
+<line class="grid" x1="704.0" x2="704.0" y1="68" y2="418" stroke-width="1"/>
+<text class="ink" x="704.0" y="434" font-size="11" text-anchor="middle">100%</text>
+<text class="title" x="238" y="95.0" font-size="12" text-anchor="end">Jev, label names</text>
+<path class="s1" d="M250,74 h349.4 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-349.4 z"/>
+<text class="ink" x="608.4" y="83" font-size="10.5">77.8%</text>
+<path class="s2" d="M250,86 h406.9 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-406.9 z"/>
+<text class="ink" x="665.9" y="95" font-size="10.5">90.5%</text>
+<path class="s3" d="M250,98 h360.7 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-360.7 z"/>
+<text class="ink" x="619.7" y="107" font-size="10.5">80.3%</text>
+<text class="title" x="238" y="143.0" font-size="12" text-anchor="end">gpt-6-luna, label names</text>
+<path class="s1" d="M250,122 h344.8 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-344.8 z"/>
+<text class="ink" x="603.8" y="131" font-size="10.5">76.8%</text>
+<path class="s2" d="M250,134 h363.7 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-363.7 z"/>
+<text class="ink" x="622.7" y="143" font-size="10.5">81.0%</text>
+<path class="s3" d="M250,146 h321.4 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-321.4 z"/>
+<text class="ink" x="580.4" y="155" font-size="10.5">71.7%</text>
+<text class="title" x="238" y="191.0" font-size="12" text-anchor="end">gpt-6-sol, label names</text>
+<path class="s1" d="M250,170 h371.3 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-371.3 z"/>
+<text class="ink" x="630.3" y="179" font-size="10.5">82.7%</text>
+<path class="s2" d="M250,182 h423.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-423.5 z"/>
+<text class="ink" x="682.5" y="191" font-size="10.5">94.2%</text>
+<path class="s3" d="M250,194 h375.1 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-375.1 z"/>
+<text class="ink" x="634.1" y="203" font-size="10.5">83.5%</text>
+<text class="title" x="238" y="239.0" font-size="12" text-anchor="end">Jev, label definitions</text>
+<path class="s1" d="M250,218 h391.0 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-391.0 z"/>
+<text class="ink" x="650.0" y="227" font-size="10.5">87.0%</text>
+<path class="s2" d="M250,230 h423.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-423.5 z"/>
+<text class="ink" x="682.5" y="239" font-size="10.5">94.2%</text>
+<path class="s3" d="M250,242 h378.1 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-378.1 z"/>
+<text class="ink" x="637.1" y="251" font-size="10.5">84.2%</text>
+<text class="title" x="238" y="287.0" font-size="12" text-anchor="end">Jev, 10 nearest examples</text>
+<path class="s1" d="M250,266 h421.2 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-421.2 z"/>
+<text class="ink" x="680.2" y="275" font-size="10.5">93.7%</text>
+<path class="s2" d="M250,278 h426.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-426.5 z"/>
+<text class="ink" x="685.5" y="287" font-size="10.5">94.8%</text>
+<path class="s3" d="M250,290 h400.1 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-400.1 z"/>
+<text class="ink" x="659.1" y="299" font-size="10.5">89.0%</text>
+<text class="title" x="238" y="335.0" font-size="12" text-anchor="end">gpt-6-luna, 10 nearest examples</text>
+<path class="s1" d="M250,314 h420.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-420.5 z"/>
+<text class="ink" x="679.5" y="323" font-size="10.5">93.5%</text>
+<path class="s2" d="M250,326 h405.4 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-405.4 z"/>
+<text class="ink" x="664.4" y="335" font-size="10.5">90.2%</text>
+<path class="s3" d="M250,338 h383.4 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-383.4 z"/>
+<text class="ink" x="642.4" y="347" font-size="10.5">85.3%</text>
+<text class="title" x="238" y="383.0" font-size="12" text-anchor="end">trained: embeddings + LR</text>
+<path class="s1" d="M250,362 h423.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-423.5 z"/>
+<text class="ink" x="682.5" y="371" font-size="10.5">94.2%</text>
+<path class="s2" d="M250,374 h421.2 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-421.2 z"/>
+<text class="ink" x="680.2" y="383" font-size="10.5">93.7%</text>
+<path class="s3" d="M250,386 h400.8 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-400.8 z"/>
+<text class="ink" x="659.8" y="395" font-size="10.5">89.2%</text>
+<text class="ink" x="20" y="450" font-size="10.5">95% intervals are about ±3 points. Source: classify/results/summary.json</text>
+</svg>

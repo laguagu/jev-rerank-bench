@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 298" width="760" height="298" role="img" aria-label="Reranking: top-1 recall over identical shortlists"><style>
+.surface { fill: #fcfcfb; } .title { fill: #0b0b0b; } .ink { fill: #52514e; } .grid { stroke: #e4e3df; }
+.s1 { fill: #2a78d6; } .s2 { fill: #eb6834; } .s3 { fill: #1baf7a; }
+@media (prefers-color-scheme: dark) {
+  .surface { fill: #1a1a19; } .title { fill: #ffffff; } .ink { fill: #c3c2b7; } .grid { stroke: #383835; }
+  .s1 { fill: #3987e5; } .s2 { fill: #d95926; } .s3 { fill: #199e70; }
+}
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+</style>
+<rect class="surface" width="760" height="298" rx="8"/>
+<text class="title" x="20" y="30" font-size="15" font-weight="600">Reranking: top-1 recall over identical shortlists</text>
+<rect class="s1" x="20" y="44" width="10" height="10" rx="2"/>
+<text class="ink" x="36" y="53" font-size="12">MuPLeR-fi, 200 queries, document</text>
+<rect class="s2" x="276.4" y="44" width="10" height="10" rx="2"/>
+<text class="ink" x="292.4" y="53" font-size="12">Finnish agreements, 84 queries, section</text>
+<line class="grid" x1="250.0" x2="250.0" y1="68" y2="262" stroke-width="1"/>
+<text class="ink" x="250.0" y="278" font-size="11" text-anchor="middle">0%</text>
+<line class="grid" x1="363.5" x2="363.5" y1="68" y2="262" stroke-width="1"/>
+<text class="ink" x="363.5" y="278" font-size="11" text-anchor="middle">25%</text>
+<line class="grid" x1="477.0" x2="477.0" y1="68" y2="262" stroke-width="1"/>
+<text class="ink" x="477.0" y="278" font-size="11" text-anchor="middle">50%</text>
+<line class="grid" x1="590.5" x2="590.5" y1="68" y2="262" stroke-width="1"/>
+<text class="ink" x="590.5" y="278" font-size="11" text-anchor="middle">75%</text>
+<line class="grid" x1="704.0" x2="704.0" y1="68" y2="262" stroke-width="1"/>
+<text class="ink" x="704.0" y="278" font-size="11" text-anchor="middle">100%</text>
+<text class="title" x="238" y="89.0" font-size="12" text-anchor="end">no reranking (hybrid)</text>
+<path class="s1" d="M250,74 h327.4 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-327.4 z"/>
+<text class="ink" x="586.4" y="83" font-size="10.5">73.0%</text>
+<path class="s2" d="M250,86 h141.0 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-141.0 z"/>
+<text class="ink" x="400.0" y="95" font-size="10.5">31.9%</text>
+<text class="title" x="238" y="125.0" font-size="12" text-anchor="end">gpt-4.1-mini, logprobs</text>
+<path class="s1" d="M250,110 h413.7 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-413.7 z"/>
+<text class="ink" x="672.7" y="119" font-size="10.5">92.0%</text>
+<path class="s2" d="M250,122 h178.9 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-178.9 z"/>
+<text class="ink" x="437.9" y="131" font-size="10.5">40.3%</text>
+<text class="title" x="238" y="161.0" font-size="12" text-anchor="end">gpt-5.6-luna, graded</text>
+<path class="s1" d="M250,146 h418.2 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-418.2 z"/>
+<text class="ink" x="677.2" y="155" font-size="10.5">93.0%</text>
+<text class="ink" x="254" y="167" font-size="10">not run</text>
+<text class="title" x="238" y="197.0" font-size="12" text-anchor="end">Voyage rerank-2.5</text>
+<path class="s1" d="M250,182 h429.6 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-429.6 z"/>
+<text class="ink" x="688.6" y="191" font-size="10.5">95.5%</text>
+<path class="s2" d="M250,194 h260.8 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-260.8 z"/>
+<text class="ink" x="519.8" y="203" font-size="10.5">58.3%</text>
+<text class="title" x="238" y="233.0" font-size="12" text-anchor="end">Jev, batched</text>
+<path class="s1" d="M250,218 h434.1 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-434.1 z"/>
+<text class="ink" x="693.1" y="227" font-size="10.5">96.5%</text>
+<path class="s2" d="M250,230 h254.5 a4,4 0 0 1 4,4 v2 a4,4 0 0 1 -4,4 h-254.5 z"/>
+<text class="ink" x="513.5" y="239" font-size="10.5">56.9%</text>
+<text class="ink" x="20" y="294" font-size="10.5">Shortlist ceiling: 97.0% MuPLeR, 70.8% private corpus. Source: results/*/latest.json</text>
+</svg>

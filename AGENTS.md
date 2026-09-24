@@ -79,7 +79,10 @@ in the connection's startup options, so every query in `search.ts` names
 `chunks` and `documents` unqualified and still reads the right one.
 
 - **fi-tes** is not redistributable. Aggregate numbers derived from it may be
-  published; the documents, the source path and the provider name may not.
+  published; the documents, their file names, the questions, the source path and
+  the provider name may not. `bench.ts` leaves questions and file names out of the
+  results file when `DATASET.publishable` is false, and `examples` reads them from
+  the local `corpus.json`. Grep `results/` for `.md"` before committing a new run.
 - **mupler** is `mteb/MuPLeR-retrieval` fi-split, EUPL-1.2, and is the dataset
   any public version of this work reports on. Section-level ground truth does
   not exist there; only document level is scored.
@@ -115,3 +118,11 @@ to be bought.
   before `bun run laya`.
 - It writes `<dataset dir>/laya-scores-<kind>.json`, which the benchmark reads
   as a precomputed reranker. Nothing in that path calls a paid API.
+
+## Sub-projects
+
+`codesearch/` (jegrep against an embedding index) and `classify/` (Jev against
+chat models and trained classifiers) are self-contained Python projects run with
+`uv`; each has its own README, and `classify/` its own AGENTS.md. They share no
+code with the TypeScript benchmark or with each other. `docs/charts.py` draws the
+README charts from the committed result files; rerun it after any new result.
